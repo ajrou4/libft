@@ -6,7 +6,7 @@
 /*   By: majrou <majrou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:02:45 by majrou            #+#    #+#             */
-/*   Updated: 2022/10/10 00:10:23 by majrou           ###   ########.fr       */
+/*   Updated: 2022/10/28 04:00:39 by majrou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,34 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char			*c_dest;
-	unsigned char	*c_src;
-	int 			i;
+	unsigned char	*cast_dest;
+	unsigned char	*cast_src;
+	size_t			i;
 
 	i = 0;
-	c_dest = (unsigned char *)dest;
-	c_src  = (unsigned char *)src;
-	if (c_src < c_dest)
+	cast_dest = (unsigned char *)dest;
+	cast_src = (unsigned char *)src;
+	if (cast_src < cast_dest)
 	{
-		while (c_src[i])
+		while (n--)
 		{
-			ft_memcpy(c_dest, c_src, n);
-			i++;
+			cast_dest[n] = cast_src[n];
 		}
 	}
-	if (c_src > c_dest)
+	else
 	{
-		while (c_src[i] )
-		{
-			ft_memcpy(c_dest, c_src, n);
-			i--;
-		}
+		ft_memcpy(cast_dest, cast_src, n);
 	}
-	return (c_dest);
+	return (cast_dest);
 }
-int	main()
-{
-	char dest[] = "oldstring";
-   const char src[]  = "newstring";
 
-   memmove(dest, src, 9);
-   printf("After memmove dest = %s, src = %s\n", dest, src);
-   ft_memmove(dest, src, 9);
-   printf("After memmove dest = %s, src = %s\n", dest, src);
-}
+// int    main()
+// {
+//     char dest[] = "oldstring";
+//    const char src[]  = "newstring";
+
+//    memmove(dest, src, 9);
+//    printf("After memmove  orignal dest = %s, src = %s\n", dest, src);
+//    ft_memmove(dest, src, 9);
+//    printf("After my memmove dest = %s, src = %s\n", dest, src);
+// }
